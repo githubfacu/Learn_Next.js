@@ -1,12 +1,21 @@
+import { fetchFilteredCustomers } from '@/app/lib/data';
+import { FormattedCustomersTable } from '@/app/lib/definitions';
+import CustomersTable from '@/app/ui/customers/table';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Customers',
 };
 
-export default function Page() {
+export default async function Page({searchParams}: {searchParams? : {query: string}}) {
+
+  const query = searchParams?.query || '';
+  const customers: FormattedCustomersTable[] = await fetchFilteredCustomers(query)
+
+  console.log(customers);
+
     return (
-      <div>Customers Page</div>
+      <CustomersTable query={query} customers={customers} />
     )
   }
   
