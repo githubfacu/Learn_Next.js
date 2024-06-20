@@ -17,5 +17,4 @@ export default async function Page({searchParams}: {searchParams? : {query: stri
     return (
       <CustomersTable query={query} customers={customers} />
     )
-  }
-  
+}
